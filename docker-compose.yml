@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  momu_annotate:
+      image: registry.docker.libis.be/libis/annotot
+      restart: unless-stopped
+      environment:
+         SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      ports:
+         - 13000:3000
+      networks:
+         - http
+      volumes:
+         - ./volumes/momu_annotate/config/routes.rb:/app/annotot_app/config/routes.rb
+         - ./volumes/momu_annotate/db/production.sqlite3:/app/annotot_app/db/production.sqlite3
